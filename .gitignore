@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+
+# Environment & Secrets
+.env
+*.pem
+*.key
+
+# SQLite & Local Data
+*.db
+*.sqlite
+*.sqlite3
+data/
+logs/
+
+# Terraform
+terraform/.terraform/
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/*.tfvars
+terraform/terraform.exe
+terraform/LICENSE.txt
+
+# IDE
+.vscode/
+.idea/

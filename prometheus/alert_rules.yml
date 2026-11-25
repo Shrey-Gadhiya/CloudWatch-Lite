@@ -1,0 +1,38 @@
+groups:
+  - name: cloudwatch_lite_alerts
+    rules:
+      - alert: HighCpuUsage
+        expr: cloudwatch_lite_cpu_usage_percent > 80
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CloudWatch Lite CPU usage is above 80% (current: {{ $value }}%)."
+
+      - alert: HighMemoryUsage
+        expr: cloudwatch_lite_memory_usage_percent > 85
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High memory usage detected"
+          description: "CloudWatch Lite memory usage is above 85% (current: {{ $value }}%)."
+
+      - alert: HighDiskUsage
+        expr: cloudwatch_lite_disk_usage_percent > 90
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "High disk utilization detected"
+          description: "Disk usage is above 90% (current: {{ $value }}%)."
+
+      - alert: ApplicationUnavailable
+        expr: up{job="cloudwatch-lite"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "CloudWatch Lite target is down"
+          description: "Prometheus cannot scrape cloudwatch-lite:5000/metrics."
